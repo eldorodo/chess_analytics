@@ -1,0 +1,18 @@
+INFO:pgn2data - process:Processing file:WorldChamp2018.pgn
+ERROR:chess.pgn:error during pgn parsing
+Traceback (most recent call last):
+  File "C:\Users\sasubra\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\LocalCache\local-packages\Python38\site-packages\chess\pgn.py", line 1629, in read_game
+    move = visitor.parse_san(board_stack[-1], token)
+  File "C:\Users\sasubra\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\LocalCache\local-packages\Python38\site-packages\chess\pgn.py", line 1010, in parse_san
+    return board.parse_san(san)
+  File "C:\Users\sasubra\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\LocalCache\local-packages\Python38\site-packages\chess\__init__.py", line 3017, in parse_san
+    raise ValueError(f"illegal san: {san!r} in {self.fen()}")
+ValueError: illegal san: 'Bf4' in 8/8/R1p5/1p1k4/1Pr5/1K6/8/8 w - - 18 115
+ERROR:chess.pgn:error during pgn parsing
+Traceback (most recent call last):
+  File "C:\Users\sasubra\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\LocalCache\local-packages\Python38\site-packages\chess\pgn.py", line 1629, in read_game
+    move = visitor.parse_san(board_stack[-1], token)
+  File "C:\Users\sasubra\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\LocalCache\local-packages\Python38\site-packages\chess\pgn.py", line 1010, in parse_san
+    return board.parse_san(san)
+  File "C:\Users\sasubra\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\LocalCache\local-packages\Python38\site-packages\chess\__init__.py", line 3017, in parse_san
+    raise ValueError(f"illegal san: {san!r} in {self.fen()}")
