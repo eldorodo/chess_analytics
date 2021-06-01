@@ -3,6 +3,8 @@ from multiprocessing import Pool
 from zipfile import ZipFile
 from converter.pgn_data import PGNData
 import os
+import shutil
+import glob
 
 def download_url(url, save_path, chunk_size=128):
     r = requests.get(url, stream=True)
@@ -13,9 +15,19 @@ def download_url(url, save_path, chunk_size=128):
 
 def pgn_to_csv(pgn_file_name):
 
-    pgn_data = PGNData(pgn_file_name)
-    result = pgn_data.export()
-    result.print_summary()
+    try:
+        pgn_data = PGNData(pgn_file_name)
+        result = pgn_data.export()
+        result.print_summary()
+        shutil.copy(f"{pgn_file_name}_Akobian_moves.csv", "data/csv")
+        os.remove(f"{pgn_file_name}_Akobian_moves.csv")
+        shutil.copy(f"{pgn_file_name}_game_info.csv", "data/csv")
+        os.remove(f"{pgn_file_name}_game_info.csv")
+        
+
+    except:
+        print(f"Some error occured in extraction for {pgn_file_name}")
+        return
 
 
 # Thread function
@@ -36,29 +48,32 @@ def process_url(line_url):
         with ZipFile(file_name, 'r') as zipObj:
             print(f"Extracting pgn file from zip file {file_name}")
             zipObj.extractall()
+            zipObj.close()
             print (f"deleting zip file {file_name}")
             os.remove(file_name)
 
     pgn_file_name = f"{file_name[:-4]}.pgn"
-    print(f"pgn file name: {pgn_file_name}")
 
     pgn_to_csv(pgn_file_name)
 
-    print(f"Deleting {pgn_file_name}")
+    print(f"Removing pgn file: {pgn_file_name}")
     os.remove(pgn_file_name)
 
+
 # main starts here
-
-f = open("master_download_links.txt", "r")
-
-all_lines = list(f.readlines())
-
 if __name__ == '__main__':
 
-    if (os.path.exists('data') == False):
-        os.mkdir('data')
+    import scrap
+        
+    f = open("data/download links/master_download_links_reduced.txt", "r")
+        
+    all_lines = list(f.readlines())
+
+    if (os.path.exists('data/csv') == False):
+        os.mkdir('data/csv')
 
     with Pool(20) as p:
-        p.map(process_url, all_lines)
+        p.map(process_url, all_lines)        
 
-f.close()
+
+    f.close()

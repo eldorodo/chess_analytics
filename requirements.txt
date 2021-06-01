@@ -1,0 +1,12 @@
+autoscraper==1.1.12
+pandas==1.2.0
+multiprocess==0.70.9
+awscli==1.16.304        
+azure-common==1.1.27
+azure-core==1.13.0          
+azure-mgmt-core==1.2.2          
+azure-mgmt-storage==17.1.0             
+azure-storage-blob==12.8.1
+gym==0.15.3
+gym-chess==0.1.1
+pgn2data==0.0.3
