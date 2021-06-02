@@ -63,7 +63,7 @@ def process_url(line_url):
 # main starts here
 if __name__ == '__main__':
 
-    import scrap
+    import scrap2
     
     #Remove existing csv files and make a new directory
     if (os.path.exists('data/pgn') == False):

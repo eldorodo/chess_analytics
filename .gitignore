@@ -4,6 +4,8 @@ blob-quickstart-v12/
 temp1.py
 Scrap.py
 Top-chess-players.ipynb
+__pycache__
+.ipynb_checkpoints
 *csv
 *zip
 *pgn
