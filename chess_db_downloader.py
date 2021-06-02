@@ -3,8 +3,8 @@ from multiprocessing import Pool
 from zipfile import ZipFile
 from converter.pgn_data import PGNData
 import os
-import shutil
-import glob
+#import shutil
+#import glob
 
 def download_url(url, save_path, chunk_size=128):
     r = requests.get(url, stream=True)
@@ -19,10 +19,10 @@ def pgn_to_csv(pgn_file_name):
         pgn_data = PGNData(pgn_file_name)
         result = pgn_data.export()
         result.print_summary()
-        shutil.copy(f"{pgn_file_name}_Akobian_moves.csv", "data/csv")
-        os.remove(f"{pgn_file_name}_Akobian_moves.csv")
-        shutil.copy(f"{pgn_file_name}_game_info.csv", "data/csv")
-        os.remove(f"{pgn_file_name}_game_info.csv")
+        #shutil.copy(f"{pgn_file_name}_Akobian_moves.csv", "data/csv")
+        #os.remove(f"{pgn_file_name}_Akobian_moves.csv")
+        #shutil.copy(f"{pgn_file_name}_game_info.csv", "data/csv")
+        #os.remove(f"{pgn_file_name}_game_info.csv")
         
 
     except:
@@ -41,39 +41,43 @@ def process_url(line_url):
         #continue
 
     print(f"Downloading {file_name}")
-    download_url(line_url, file_name)
+    download_url(line_url, "data/pgn/"+file_name)
 
     if (file_name.endswith("zip")):
 
-        with ZipFile(file_name, 'r') as zipObj:
+        with ZipFile("data/pgn/"+file_name, 'r') as zipObj:
             print(f"Extracting pgn file from zip file {file_name}")
-            zipObj.extractall()
+            zipObj.extractall("data/pgn")
             zipObj.close()
             print (f"deleting zip file {file_name}")
-            os.remove(file_name)
+            os.remove("data/pgn/"+file_name)
 
-    pgn_file_name = f"{file_name[:-4]}.pgn"
+    #pgn_file_name = f"{file_name[:-4]}.pgn"
 
-    pgn_to_csv(pgn_file_name)
+    #pgn_to_csv(pgn_file_name)  #Commented as it takes lot of space for a single pgn
 
-    print(f"Removing pgn file: {pgn_file_name}")
-    os.remove(pgn_file_name)
+    #print(f"Removing pgn file: {pgn_file_name}")
+    #os.remove(pgn_file_name)
 
 
 # main starts here
 if __name__ == '__main__':
 
     import scrap
-        
-    f = open("data/download links/master_download_links_reduced.txt", "r")
+    
+    #Remove existing csv files and make a new directory
+    if (os.path.exists('data/pgn') == False):
+        os.mkdirs('data/pgn')    
+                
+    f = open("data/download links/master_download_links.txt", "r")
         
     all_lines = list(f.readlines())
 
-    if (os.path.exists('data/csv') == False):
-        os.mkdir('data/csv')
-
     with Pool(20) as p:
-        p.map(process_url, all_lines)        
-
+        p.map(process_url, all_lines)   
+        
+    #for pgnfile in glob.iglob(os.path.join("*.pgn")):
+        #shutil.move(pgnfile, "data/pgn")
+        #pgnfile.close()   
 
     f.close()
