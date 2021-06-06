@@ -11,3 +11,4 @@ gym==0.15.3
 gym-chess==0.1.1
 pgn2data==0.0.3
 requests==2.22.0
+mysql-connector-python==8.0.25

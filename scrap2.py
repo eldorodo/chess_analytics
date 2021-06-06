@@ -37,7 +37,8 @@ append_events =  "https://www.pgnmentor.com/events/"
 
 scraper=AutoScraper()
 scraper.load("autoscraper_models/Players_pgnmentor")
-result=scraper.build(url,wanted_list_players)
+result=scraper.get_result_similar(url)
+#result=scraper.build(url,wanted_list_players)
 players_list = list(result)
 players_list = [append_players + x for x in players_list]
 players_list = remove_and_append(players_list , 4, ".zip")
@@ -47,7 +48,8 @@ print("Players ", len(players_list))
 
 scraper=AutoScraper()
 scraper.load("autoscraper_models/openings_pgnmentor")
-result=scraper.build(url,wanted_list_openings)
+result=scraper.get_result_similar(url)
+#result=scraper.build(url,wanted_list_openings)
 openings_list = list(result)
 openings_list = [append_openings + x for x in openings_list]
 openings_list = remove_and_append(openings_list , 4, ".zip")
@@ -57,7 +59,8 @@ print("openings ", len(openings_list))
 
 scraper=AutoScraper()
 scraper.load("autoscraper_models/events_pgnmentor")
-result=scraper.build(url,wanted_list_events)
+result=scraper.get_result_similar(url)
+#result=scraper.build(url,wanted_list_events)
 events_list = list(result)
 events_list = [append_events + x for x in events_list]
 print("events ", len(events_list))
@@ -82,10 +85,10 @@ master_list.extend(events_list)
 #master_list.extend(week_in_chess_list)
 
 
-if (os.path.exists('data/download links') == False):    
-    os.mkdir('data/download links')
+#if (os.path.exists('data/download links') == False):    
+    #os.mkdir('data/download links')
 
-textfile = open("data/download links/master_download_links.txt", "w")
+textfile = open("master_download_links.txt", "w")
 for element in master_list:
     textfile.write(element + "\n")
 textfile.close()
