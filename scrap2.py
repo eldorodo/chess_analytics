@@ -88,7 +88,7 @@ master_list.extend(events_list)
 #if (os.path.exists('data/download links') == False):    
     #os.mkdir('data/download links')
 
-textfile = open("master_download_links.txt", "w")
+textfile = open("data/download links/master_download_links.txt", "w")
 for element in master_list:
     textfile.write(element + "\n")
 textfile.close()

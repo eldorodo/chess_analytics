@@ -4,10 +4,10 @@ from mysql.connector import errorcode
 
 # Obtain connection string information from the portal
 config = {
-  'host':'chess-wizz.mysql.database.azure.com',
-  'user':'adminchesswizz@chess-wizz',
-  'password':'',
-  'database':'chess-wizz',
+  'host':'chess-wiz.database.windows.net',
+  'user':'adminchesswizz',
+  'password':'Admin@1234',
+  'database':'testdb',
   'client_flags': [mysql.connector.ClientFlag.SSL],
   'ssl_ca': 'DigiCertGlobalRootG2.crt.pem'
 }

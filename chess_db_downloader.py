@@ -67,7 +67,10 @@ if __name__ == '__main__':
     
     #Remove existing csv files and make a new directory
     if (os.path.exists('data/pgn') == False):
-        os.mkdirs('data/pgn')    
+        os.mkdirs('data/pgn')
+
+    if (os.path.exists('data/download links') == False):
+        os.mkdirs('data/download links')
                 
     f = open("data/download links/master_download_links.txt", "r")
         
