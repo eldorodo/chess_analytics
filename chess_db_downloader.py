@@ -13,7 +13,7 @@ def download_url(url, save_path, chunk_size=128):
             fd.write(chunk)
 
 
-def pgn_to_csv(pgn_file_name):
+""" def pgn_to_csv(pgn_file_name):
 
     try:
         pgn_data = PGNData(pgn_file_name)
@@ -23,11 +23,10 @@ def pgn_to_csv(pgn_file_name):
         #os.remove(f"{pgn_file_name}_Akobian_moves.csv")
         #shutil.copy(f"{pgn_file_name}_game_info.csv", "data/csv")
         #os.remove(f"{pgn_file_name}_game_info.csv")
-        
-
+    
     except:
         print(f"Some error occured in extraction for {pgn_file_name}")
-        return
+        return """
 
 
 # Thread function
