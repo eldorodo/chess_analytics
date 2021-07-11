@@ -9,6 +9,8 @@ import chess
 import chess.pgn
 import pandas as pd
 from multiprocessing.dummy import Pool as ThreadPool 
+import sqlalchemy
+
 
 #print(list(set([1,1,1,2,3,4,32,324,1]) - set([2,912])))
 #print(os.getcwd())
@@ -74,30 +76,30 @@ for script in soup(["script", "style"]):
 strips = list(soup.stripped_strings)
 print(strips[:5]) """
 
-to_extract = ["Event", "Site", "Date", "Round", "White", "Black", "Result", "WhiteElo", "BlackElo","ECO"]
+# to_extract = ["Event", "Site", "Date", "Round", "White", "Black", "Result", "WhiteElo", "BlackElo","ECO"]
 
-pgn = open("data/pgn2/Aachen1868.pgn")
-game = chess.pgn.read_game(pgn)
+# pgn = open("data/pgn2/Aachen1868.pgn")
+# game = chess.pgn.read_game(pgn)
 
-print(game.headers)
-print(type(list(game.headers)))
-print(pd.DataFrame(game.headers))
+# print(game.headers)
+# print(type(list(game.headers)))
+# print(pd.DataFrame(game.headers))
 
-while(True):    
-    game_data = pd.DataFrame()
-    row = []
-    try:
-        game = chess.pgn.read_game(pgn)
-        for ext in to_extract:
-            #print(ext, game.headers[ext])
-            row.append(game.headers[ext])
-        row_series = pd.Series(row, index = to_extract)
-        print(row_series)
-        game_data = game_data.append(row_series, ignore_index=True)
-    except:
-        print("End of game")
-        game_data.columns = to_extract
-        print("\n")
-        print(game_data)
-        break
+# while(True):    
+#     game_data = pd.DataFrame()
+#     row = []
+#     try:
+#         game = chess.pgn.read_game(pgn)
+#         for ext in to_extract:
+#             #print(ext, game.headers[ext])
+#             row.append(game.headers[ext])
+#         row_series = pd.Series(row, index = to_extract)
+#         print(row_series)
+#         game_data = game_data.append(row_series, ignore_index=True)
+#     except:
+#         print("End of game")
+#         game_data.columns = to_extract
+#         print("\n")
+#         print(game_data)
+#         break
         
