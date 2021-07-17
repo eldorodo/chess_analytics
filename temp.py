@@ -12,6 +12,7 @@ from multiprocessing.dummy import Pool as ThreadPool
 import sqlalchemy
 
 
+
 #print(list(set([1,1,1,2,3,4,32,324,1]) - set([2,912])))
 #print(os.getcwd())
 

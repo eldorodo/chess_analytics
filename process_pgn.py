@@ -6,7 +6,7 @@ from multiprocessing.dummy import Pool as ThreadPool
 import pandas as pd
 
 def game_detail_extraction(filename,dir= "data/pgn/",output_dir = "data/csv/"):
-    to_extract = ["Event",	"Site",	"Date",	"Round", "White", "Black", "Result", "WhiteElo", "BlackElo", "ECO"]
+    to_extract = ["Black", "BlackElo", "Date", "ECO", "Event", "Result", "Round", "Site", "White", "WhiteElo"]
     if filename.endswith(".pgn"): 
         pgn = open(dir + filename)
         game_data = pd.DataFrame()
